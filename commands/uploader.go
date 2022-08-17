@@ -326,10 +326,11 @@ func (c *uploadContext) ReportErrors() {
 			Error(tr.Tr.Get("warning: The above files would have halted this push."))
 		}
 	} else if c.lockVerifier.HasOwnedLocks() {
-		Print(tr.Tr.Get("Consider unlocking your own locked files: (`git lfs unlock <path>`)"))
+		Print(tr.Tr.Get("\n\n*** YOU HAVE LOCKED FILES"))
 		for _, owned := range c.lockVerifier.OwnedLocks() {
 			Print("* %s", owned.Path())
 		}
+		Print("")
 	}
 }
 
